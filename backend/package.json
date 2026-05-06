@@ -4,17 +4,22 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "prisma": "^7.8.0"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "@prisma/extension-accelerate": "^3.0.1",
     "@tavily/core": "^0.7.3",
     "@types/express": "^5.0.6",
     "dotenv": "^17.4.2",
     "express": "^5.0.0",
     "openai": "^6.36.0",
+    "pg": "^8.20.0",
     "zod": "^4.4.3"
   }
 }

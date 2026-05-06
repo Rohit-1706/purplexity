@@ -10,6 +10,18 @@ const app = express();
 
 app.use(express.json());
 
+// Signup Endpoint and Signin Endpoint is done by Supabase Auth, so we don't need to implement it here
+
+// Conversation Endpoint ( Get all the Conversations)
+app.post("/conversations", async (req, res) => { 
+
+})
+
+// Conversation Endpoint ( Get a specific conversation with its messages)
+app.post("/conversation/:conversationId", async (req, res) => {
+
+})
+
 app.post("/purplexity_ask", async (req, res) => {
     // step 1: get the query from the user
     const query = req.body.query;
@@ -68,6 +80,15 @@ app.post("/purplexity_ask", async (req, res) => {
     res.write("\n</SOURCES>\n");
 
     res.end();
+})
+
+
+
+app.post("/purplexity_ask/followup", async (req, res) => {
+    // step 1: get the query and the conversation history from the user
+    // step 2: forward the query and the conversation history to the model and stream the response back to the user
+    // step 2.5 : do some context engineering on the prompt and the web search results to make it more relevant for the model
+    // step 3: return the response back to the user
 })
 
 app.listen(3000, () => {
