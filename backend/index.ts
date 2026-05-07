@@ -2,7 +2,8 @@ import express from "express";
 import { tavily } from "@tavily/core";
 import { OpenAI } from "openai";
 import { PROMPT_TEMPLATE, SYSTEM_PROMPT } from "./prompt";
-import type { application } from "express";
+import type { Request, Response, Application } from "express";
+import { authMiddleware } from "./middleware";
 
 
 const client = tavily({ apiKey: process.env.TAVILY_API_KEY });
@@ -13,16 +14,16 @@ app.use(express.json());
 // Signup Endpoint and Signin Endpoint is done by Supabase Auth, so we don't need to implement it here
 
 // Conversation Endpoint ( Get all the Conversations)
-app.post("/conversations", async (req, res) => { 
+app.post("/conversations", authMiddleware, async (req: Request, res: Response) => { 
 
 })
 
 // Conversation Endpoint ( Get a specific conversation with its messages)
-app.post("/conversation/:conversationId", async (req, res) => {
+app.post("/conversation/:conversationId", authMiddleware, async (req: Request, res: Response) => {
 
 })
 
-app.post("/purplexity_ask", async (req, res) => {
+app.post("/purplexity_ask", authMiddleware, async (req: Request, res: Response) => {
     // step 1: get the query from the user
     const query = req.body.query;
 
@@ -84,7 +85,7 @@ app.post("/purplexity_ask", async (req, res) => {
 
 
 
-app.post("/purplexity_ask/followup", async (req, res) => {
+app.post("/purplexity_ask/followup", authMiddleware, async (req: Request, res: Response) => {
     // step 1: get the query and the conversation history from the user
     // step 2: forward the query and the conversation history to the model and stream the response back to the user
     // step 2.5 : do some context engineering on the prompt and the web search results to make it more relevant for the model
