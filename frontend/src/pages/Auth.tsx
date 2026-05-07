@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js"
-const supabase = createClient(process.env.VITE_SUPABASE_URL!, process.env.VITE_SUPABASE_PUBLISHABLE_KEY!);
+import { supabaseConfig } from "../config"
+const supabase = createClient(supabaseConfig.url, supabaseConfig.publishableKey);
 
 export function Auth() {
 
